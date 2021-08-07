@@ -1,42 +1,46 @@
-const { MessageButton, MessageActionRow } = require("discord-buttons");
+const { MessageButton, MessageActionRow } = require("discord.js");
 
 async function createAdvancedSlider(
-  userID,
-  channel,
+  message,
   embeds,
+  replyMsg,
   deleteMsg = false,
   backMain = false,
   emoji = ["◀️", "▶️", "❌", "↩"],
   time = 60000
 ) {
-  const button_back = new MessageButton().setStyle("grey").setID("back");
+  const button_back = new MessageButton()
+    .setStyle("SECONDARY")
+    .setCustomId("back");
 
-  const button_next = new MessageButton().setStyle("grey").setID("next");
+  const button_next = new MessageButton()
+    .setStyle("SECONDARY")
+    .setCustomId("next");
 
-  const button_x = new MessageButton().setStyle("grey").setID("x");
+  const button_x = new MessageButton().setStyle("SECONDARY").setCustomId("x");
 
   const button_backmain = new MessageButton()
-    .setStyle("grey")
-    .setID("backmain");
+    .setStyle("SECONDARY")
+    .setCustomId("backmain");
 
   const button_back_disabled = new MessageButton()
-    .setStyle("grey")
-    .setID("back_disabled")
-    .setDisabled();
+    .setStyle("SECONDARY")
+    .setCustomId("back_disabled")
+    .setDisabled(true);
 
   const button_next_disabled = new MessageButton()
-    .setStyle("grey")
-    .setID("next_disabled")
-    .setDisabled();
+    .setStyle("SECONDARY")
+    .setCustomId("next_disabled")
+    .setDisabled(true);
 
   const button_backmain_disabled = new MessageButton()
-    .setStyle("grey")
-    .setID("backmain_disabled")
-    .setDisabled();
+    .setStyle("SECONDARY")
+    .setCustomId("backmain_disabled")
+    .setDisabled(true);
   const button_x_disabled = new MessageButton()
-    .setStyle("grey")
-    .setID("x_disabled")
-    .setDisabled();
+    .setStyle("SECONDARY")
+    .setCustomId("x_disabled")
+    .setDisabled(true);
 
   button_back.setEmoji(emoji[0]);
   button_next.setEmoji(emoji[1]);
@@ -47,17 +51,6 @@ async function createAdvancedSlider(
   button_next_disabled.setEmoji(emoji[1]);
   button_backmain_disabled.setEmoji(emoji[3]);
   button_x_disabled.setEmoji(emoji[2]);
-
-  //   const buttonsActive = new MessageActionRow().addComponents([
-  //     button_back,
-  //     button_x,
-  //     button_next,
-  //   ]);
-
-  //   const buttonsDisabled = new MessageActionRow().addComponents([
-  //     button_back_disabled,
-  //     button_next_disabled,
-  //   ]);
 
   if (deleteMsg && backMain) {
     const buttonsActive = new MessageActionRow().addComponents([
@@ -74,66 +67,78 @@ async function createAdvancedSlider(
       button_backmain_disabled,
     ]);
 
-    channel
-      .send({ embed: embeds[0], components: buttonsActive })
+    message.channel
+      .send({ embeds: [embeds[0]], components: [buttonsActive] })
       .then((msg) => {
-        const collector = msg.createButtonCollector(
-          (button) => userID === userID,
-          {
-            time: time,
-          }
-        );
+        const filter = (interaction) =>
+          interaction.user.id === message.author.id;
+        const collector = msg.createMessageComponentCollector({
+          filter,
+          time,
+        });
 
         let currentPage = 0;
 
         collector.on("collect", (button) => {
-          if (button.clicker.user.id == userID) {
-            if (button.id == "back") {
-              button.defer(true);
+          if (button.user.id == message.author.id) {
+            if (button.customId == "back") {
+              button.reply({
+                content: replyMsg.backAndFoward,
+                ephemeral: true,
+              });
               if (currentPage !== 0) {
                 --currentPage;
                 msg.edit({
-                  embed: embeds[currentPage],
-                  components: buttonsActive,
+                  embeds: [embeds[currentPage]],
+                  components: [buttonsActive],
                 });
               } else {
                 currentPage = embeds.length - 1;
                 msg.edit({
-                  embed: embeds[currentPage],
-                  components: buttonsActive,
+                  embeds: [embeds[currentPage]],
+                  components: [buttonsActive],
                 });
               }
-            } else if (button.id == "next") {
-              button.defer(true);
+            } else if (button.customId == "next") {
+              button.reply({
+                content: replyMsg.backAndFoward,
+                ephemeral: true,
+              });
               if (currentPage < embeds.length - 1) {
                 currentPage++;
                 msg.edit({
-                  embed: embeds[currentPage],
-                  components: buttonsActive,
+                  embeds: [embeds[currentPage]],
+                  components: [buttonsActive],
                 });
               } else {
                 currentPage = 0;
                 msg.edit({
-                  embed: embeds[currentPage],
-                  components: buttonsActive,
+                  embeds: [embeds[currentPage]],
+                  components: [buttonsActive],
                 });
               }
-            } else if (button.id == "x") {
-              button.defer(true);
+            } else if (button.customId == "x") {
+              // button.reply({ content: replyMsg.delete, ephemeral: true });
               msg.delete();
-            } else if (button.id == "backmain") {
-              button.defer(true);
-              msg.edit({ embed: embeds[0], components: buttonsActive });
+            } else if (button.customId == "backmain") {
+              button.reply({
+                content: replyMsg.backMain,
+                ephemeral: true,
+              });
+              msg.edit({ embeds: [embeds[0]], components: [buttonsActive] });
             }
           }
         });
         collector.on("end", (collected) => {
-          if (msg) {
-            msg.edit({
-              embed: embeds[currentPage],
-              components: buttonsDisabled,
-            });
+          if (!msg.deleted) {
+            msg
+              .edit({
+                embeds: [embeds[currentPage]],
+                components: [buttonsDisabled],
+              })
+              .catch(() => {});
           }
+
           console.log("discord-epagination => Ended Collector");
         });
         collector.on("error", (e) => console.log(e));
@@ -151,65 +156,72 @@ async function createAdvancedSlider(
       button_x_disabled,
     ]);
 
-    channel
+    message.channel
       .send({ embed: embeds[0], components: buttonsActive })
       .then((msg) => {
-        const collector = msg.createButtonCollector(
-          (button) => userID === userID,
-          {
-            time: time,
-          }
-        );
+        const filter = (interaction) =>
+          interaction.user.id === message.author.id;
+        const collector = msg.createMessageComponentCollector({
+          filter,
+          time,
+        });
 
         let currentPage = 0;
 
         collector.on("collect", (button) => {
-          button.defer();
-
-          if (button.clicker.user.id == userID) {
-            if (button.id == "back") {
-              button.defer(true);
+          if (button.user.id == message.author.id) {
+            if (button.customId == "back") {
+              button.reply({
+                content: replyMsg.backAndFoward,
+                ephemeral: true,
+              });
               if (currentPage !== 0) {
                 --currentPage;
                 msg.edit({
-                  embed: embeds[currentPage],
-                  components: buttonsActive,
+                  embeds: [embeds[currentPage]],
+                  components: [buttonsActive],
                 });
               } else {
                 currentPage = embeds.length - 1;
                 msg.edit({
-                  embed: embeds[currentPage],
-                  components: buttonsActive,
+                  embeds: [embeds[currentPage]],
+                  components: [buttonsActive],
                 });
               }
-            } else if (button.id == "next") {
-              button.defer(true);
+            } else if (button.customId == "next") {
+              button.reply({
+                content: replyMsg.backAndFoward,
+                ephemeral: true,
+              });
               if (currentPage < embeds.length - 1) {
                 currentPage++;
                 msg.edit({
-                  embed: embeds[currentPage],
-                  components: buttonsActive,
+                  embeds: [embeds[currentPage]],
+                  components: [buttonsActive],
                 });
               } else {
                 currentPage = 0;
                 msg.edit({
-                  embed: embeds[currentPage],
-                  components: buttonsActive,
+                  embeds: [embeds[currentPage]],
+                  components: [buttonsActive],
                 });
               }
-            } else if (button.id == "x") {
-              button.defer(true);
+            } else if (button.customId == "x") {
+              // button.reply({ content: replyMsg.delete, ephemeral: true });
               msg.delete();
             }
           }
         });
         collector.on("end", (collected) => {
-          if (msg) {
-            msg.edit({
-              embed: embeds[currentPage],
-              components: buttonsDisabled,
-            });
+          if (!msg.deleted) {
+            msg
+              .edit({
+                embeds: [embeds[currentPage]],
+                components: [buttonsDisabled],
+              })
+              .catch(() => {});
           }
+
           console.log("discord-epagination => Ended Collector");
         });
         collector.on("error", (e) => console.log(e));
@@ -226,65 +238,75 @@ async function createAdvancedSlider(
       button_next_disabled,
       button_backmain_disabled,
     ]);
-    channel
+    message.channel
       .send({ embed: embeds[0], components: buttonsActive })
       .then((msg) => {
-        const collector = msg.createButtonCollector(
-          (button) => userID === userID,
-          {
-            time: time,
-          }
-        );
+        const filter = (interaction) =>
+          interaction.user.id === message.author.id;
+        const collector = msg.createMessageComponentCollector({
+          filter,
+          time,
+        });
 
         let currentPage = 0;
 
         collector.on("collect", (button) => {
-          button.defer();
-
-          if (button.clicker.user.id == userID) {
-            if (button.id == "back") {
-              button.defer(true);
+          if (button.user.id == message.author.id) {
+            if (button.customId == "back") {
+              button.reply({
+                content: replyMsg.backAndFoward,
+                ephemeral: true,
+              });
               if (currentPage !== 0) {
                 --currentPage;
                 msg.edit({
-                  embed: embeds[currentPage],
-                  components: buttonsActive,
+                  embeds: [embeds[currentPage]],
+                  components: [buttonsActive],
                 });
               } else {
                 currentPage = embeds.length - 1;
                 msg.edit({
-                  embed: embeds[currentPage],
-                  components: buttonsActive,
+                  embeds: [embeds[currentPage]],
+                  components: [buttonsActive],
                 });
               }
-            } else if (button.id == "next") {
-              button.defer(true);
+            } else if (button.customId == "next") {
+              button.reply({
+                content: replyMsg.backAndFoward,
+                ephemeral: true,
+              });
               if (currentPage < embeds.length - 1) {
                 currentPage++;
                 msg.edit({
-                  embed: embeds[currentPage],
-                  components: buttonsActive,
+                  embeds: [embeds[currentPage]],
+                  components: [buttonsActive],
                 });
               } else {
                 currentPage = 0;
                 msg.edit({
-                  embed: embeds[currentPage],
-                  components: buttonsActive,
+                  embeds: [embeds[currentPage]],
+                  components: [buttonsActive],
                 });
               }
-            } else if (button.id == "backmain") {
-              button.defer(true);
-              msg.edit({ embed: embeds[0], components: buttonsActive });
+            } else if (button.customId == "backmain") {
+              button.reply({
+                content: replyMsg.backMain,
+                ephemeral: true,
+              });
+              msg.edit({ embeds: [embeds[0]], components: [buttonsActive] });
             }
           }
         });
         collector.on("end", (collected) => {
-          if (msg) {
-            msg.edit({
-              embed: embeds[currentPage],
-              components: buttonsDisabled,
-            });
+          if (!msg.deleted) {
+            msg
+              .edit({
+                embeds: [embeds[currentPage]],
+                components: [buttonsDisabled],
+              })
+              .catch(() => {});
           }
+
           console.log("discord-epagination => Ended Collector");
         });
         collector.on("error", (e) => console.log(e));

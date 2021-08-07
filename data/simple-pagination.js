@@ -1,25 +1,33 @@
-const { MessageButton, MessageActionRow } = require("discord-buttons");
+const { MessageButton, MessageActionRow } = require("discord.js");
 
 async function createSimpleSlider(
-  userID,
-  channel,
+  message,
   embeds,
+  replyMsg,
   emoji = ["◀️", "▶️"],
   time = 60000
 ) {
-  const button_back = new MessageButton().setStyle("grey").setID("back");
+  if (!replyMsg)
+    throw new TypeError(
+      "discord-epagination => please specify replies, see here https://iapg.gitbook.io/discord-epagination/options/replymsgoptions"
+    );
+  const button_back = new MessageButton()
+    .setStyle("SECONDARY")
+    .setCustomId("back");
 
-  const button_next = new MessageButton().setStyle("grey").setID("next");
+  const button_next = new MessageButton()
+    .setStyle("SECONDARY")
+    .setCustomId("next");
 
   const button_back_disabled = new MessageButton()
-    .setStyle("grey")
-    .setID("back_disabled")
-    .setDisabled();
+    .setStyle("SECONDARY")
+    .setCustomId("back_disabled")
+    .setDisabled(true);
 
   const button_next_disabled = new MessageButton()
-    .setStyle("grey")
-    .setID("next_disabled")
-    .setDisabled();
+    .setStyle("SECONDARY")
+    .setCustomId("next_disabled")
+    .setDisabled(true);
 
   if (emoji[0] && emoji[1]) {
     button_back.setEmoji(emoji[0]);
@@ -43,49 +51,62 @@ async function createSimpleSlider(
     button_next_disabled,
   ]);
 
-  channel.send({ embed: embeds[0], components: buttonsActive }).then((msg) => {
-    const collector = msg.createButtonCollector((button) => userID === userID, {
-      time: time,
-    });
+  message.channel
+    .send({ embeds: [embeds[0]], components: [buttonsActive] })
+    .then((msg) => {
+      const filter = (interaction) => interaction.user.id === message.author.id;
+      const collector = msg.createMessageComponentCollector({
+        filter,
+        time,
+      });
 
-    let currentPage = 0;
+      let currentPage = 0;
 
-    collector.on("collect", (button) => {
-      button.defer();
-
-      if (button.clicker.user.id == userID) {
-        if (button.id == "back") {
-          button.defer(true);
-          if (currentPage !== 0) {
-            --currentPage;
-            msg.edit({ embed: embeds[currentPage], components: buttonsActive });
-          } else {
-            currentPage = embeds.length - 1;
-            msg.edit({ embed: embeds[currentPage], components: buttonsActive });
-          }
-        } else if (button.id == "next") {
-          button.defer(true);
-          if (currentPage < embeds.length - 1) {
-            currentPage++;
-            msg.edit({ embed: embeds[currentPage], components: buttonsActive });
-          } else {
-            currentPage = 0;
-            msg.edit({ embed: embeds[currentPage], components: buttonsActive });
+      collector.on("collect", (button) => {
+        if (button.user.id == message.author.id) {
+          button.reply({ content: replyMsg.backAndFoward, ephemeral: true });
+          if (button.customId == "back") {
+            if (currentPage !== 0) {
+              --currentPage;
+              msg.edit({
+                embeds: [embeds[currentPage]],
+                components: [buttonsActive],
+              });
+            } else {
+              currentPage = embeds.length - 1;
+              msg.edit({
+                embeds: [embeds[currentPage]],
+                components: [buttonsActive],
+              });
+            }
+          } else if (button.customId == "next") {
+            if (currentPage < embeds.length - 1) {
+              currentPage++;
+              msg.edit({
+                embeds: [embeds[currentPage]],
+                components: [buttonsActive],
+              });
+            } else {
+              currentPage = 0;
+              msg.edit({
+                embeds: [embeds[currentPage]],
+                components: [buttonsActive],
+              });
+            }
           }
         }
-      }
+      });
+      collector.on("end", (collected) => {
+        if (!msg.deleted)
+          msg.edit({
+            embeds: [embeds[currentPage]],
+            components: [buttonsDisabled],
+          });
+
+        console.log("discord-epagination => Ended Collector");
+      });
+      collector.on("error", (e) => console.log(e));
     });
-    collector.on("end", (collected) => {
-      if (msg) {
-        msg.edit({
-          embed: embeds[currentPage],
-          components: buttonsDisabled,
-        });
-      }
-      console.log("discord-epagination => Ended Collector");
-    });
-    collector.on("error", (e) => console.log(e));
-  });
 }
 
 module.exports = createSimpleSlider;
