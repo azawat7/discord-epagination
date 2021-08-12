@@ -5,6 +5,7 @@ import {
   ButtonInteraction,
   MessageEmbed,
 } from "discord.js";
+import { isGetAccessor } from "typescript";
 import {
   SliderOptions,
   Buttons,
@@ -88,6 +89,7 @@ export const createSlider = async (options: SliderOptions) => {
         });
         return;
       }
+      currentPage--;
     }
     if (id === "foward") {
       interaction.reply({ content: replyMessages.foward, ephemeral: true });
@@ -105,7 +107,10 @@ export const createSlider = async (options: SliderOptions) => {
       interaction.reply({ content: replyMessages.backMain, ephemeral: true });
       currentPage = 1;
     }
-    if (id === "delete") sliderMessage.delete();
+    if (id === "delete") {
+      sliderMessage.delete();
+      return;
+    }
 
     sliderMessage.edit({
       embeds: [embeds[currentPage - 1]],
@@ -114,10 +119,12 @@ export const createSlider = async (options: SliderOptions) => {
   });
 
   collector.on("end", () => {
-    if (sliderMessage.deletable && !sliderMessage.deleted) {
-      sliderMessage.edit({
-        components: msgButtons(true),
-      });
+    if (!sliderMessage.deleted) {
+      sliderMessage
+        .edit({
+          components: msgButtons(true),
+        })
+        .catch(() => {});
     }
   });
 
