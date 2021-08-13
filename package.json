@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/im-a-panda-guy/discord-pagination.git"
+    "url": "git+https://github.com/azawat7/discord-pagination.git"
   },
   "keywords": [
     "discord.js",
@@ -23,9 +23,9 @@
   "author": "im_a_panda_guy <az4wat@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/im-a-panda-guy/discord-pagination/issues"
+    "url": "https://github.com/azawat7/discord-pagination/issues"
   },
-  "homepage": "https://im-a-panda-guy.github.io/discord-pagination/index.html",
+  "homepage": "https://azawat7.github.io/discord-pagination/index.html",
   "dependencies": {
     "discord.js": "^13.0.1",
     "typedoc": "^0.21.5"
