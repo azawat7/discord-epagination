@@ -1,11 +1,11 @@
 {
   "name": "discord-epagination",
-  "version": "1.4.2-1",
+  "version": "1.4.2-2",
   "description": "A discord.js v13 paginator.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "docs": "npx typedoc src/index.ts",
+    "docs": "typedoc src/index.ts --theme ./node_modules/typedoc-theme-slick-dark/bin/default",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,10 +27,11 @@
   },
   "homepage": "https://azawat7.github.io/discord-pagination/index.html",
   "dependencies": {
-    "discord.js": "^13.0.1",
-    "typedoc": "^0.21.5"
+    "discord.js": "^13.0.1"
   },
   "devDependencies": {
+    "typedoc": "^0.21.5",
+    "typedoc-theme-slick-dark": "^1.0.4",
     "typescript": "^4.3.5"
   }
 }
