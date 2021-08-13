@@ -48,10 +48,18 @@ createSlider({
   },
   // Other buttons
   otherButtons: {
-    // Whether if the first page button should be enabled
-    backMainButton: true,
-    // Whether if the delete button should be enabled
-    deleteButton: true,
+    // First page button
+    backMainButton: {
+      enabled: true,
+      // Make the button behind the back and foward buttons.
+      position: -1,
+    },
+    // Delete button
+    deleteButton: {
+      enabled: true,
+      // Make the button in front of the back and foward buttons.
+      position: 1,
+    },
   },
   // Button customization
   buttons: [

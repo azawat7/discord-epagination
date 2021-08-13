@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OtherButtons | discord-epagination</title>
+	<title>OtherButtonsOptions | discord-epagination</title>
 	<meta name="description" content="Documentation for discord-epagination">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">discord-epagination</a>
 				</li>
 				<li>
-					<a href="OtherButtons.html">OtherButtons</a>
+					<a href="OtherButtonsOptions.html">OtherButtonsOptions</a>
 				</li>
 			</ul>
-			<h1>Interface OtherButtons</h1>
+			<h1>Interface OtherButtonsOptions</h1>
 		</div>
 	</div>
 </header>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">OtherButtons</span>
+						<span class="target">OtherButtonsOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -87,8 +87,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="OtherButtons.html#backMainButton" class="tsd-kind-icon">back<wbr>Main<wbr>Button</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="OtherButtons.html#deleteButton" class="tsd-kind-icon">delete<wbr>Button</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="OtherButtonsOptions.html#enabled" class="tsd-kind-icon">enabled</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="OtherButtonsOptions.html#position" class="tsd-kind-icon">position</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,32 +97,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="backMainButton" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> back<wbr>Main<wbr>Button</h3>
-					<div class="tsd-signature tsd-kind-icon">back<wbr>Main<wbr>Button<span class="tsd-signature-symbol">:</span> <a href="OtherButtonsOptions.html" class="tsd-signature-type" data-tsd-kind="Interface">OtherButtonsOptions</a></div>
+					<a name="enabled" class="tsd-anchor"></a>
+					<h3>enabled</h3>
+					<div class="tsd-signature tsd-kind-icon">enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/im-a-panda-guy/discord-pagination/blob/05b5028/src/functions/createSlider.interfaces.ts#L78">functions/createSlider.interfaces.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/im-a-panda-guy/discord-pagination/blob/05b5028/src/functions/createSlider.interfaces.ts#L85">functions/createSlider.interfaces.ts:85</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Indicates if the back to first page button should be in the slider.</p>
+							<p>Whether the button should be enabled or not.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="deleteButton" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> delete<wbr>Button</h3>
-					<div class="tsd-signature tsd-kind-icon">delete<wbr>Button<span class="tsd-signature-symbol">:</span> <a href="OtherButtonsOptions.html" class="tsd-signature-type" data-tsd-kind="Interface">OtherButtonsOptions</a></div>
+					<a name="position" class="tsd-anchor"></a>
+					<h3>position</h3>
+					<div class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/im-a-panda-guy/discord-pagination/blob/05b5028/src/functions/createSlider.interfaces.ts#L73">functions/createSlider.interfaces.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/im-a-panda-guy/discord-pagination/blob/05b5028/src/functions/createSlider.interfaces.ts#L90">functions/createSlider.interfaces.ts:90</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Indicates if the delete button should be in the slider.</p>
+							<p>Position of the button in the row (the back and foward button has an index of 0). To make it behind those two, put in -1 and to make it in front, put in 1.</p>
 						</div>
 					</div>
 				</section>
@@ -141,24 +141,24 @@
 					<li class=" tsd-kind-interface">
 						<a href="Buttons.html" class="tsd-kind-icon">Buttons</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="OtherButtons.html" class="tsd-kind-icon">Other<wbr>Buttons</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="OtherButtons.html" class="tsd-kind-icon">Other<wbr>Buttons</a>
+						<a href="OtherButtonsOptions.html" class="tsd-kind-icon">Other<wbr>Buttons<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="OtherButtons.html#backMainButton" class="tsd-kind-icon">back<wbr>Main<wbr>Button</a>
+								<a href="OtherButtonsOptions.html#enabled" class="tsd-kind-icon">enabled</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="OtherButtons.html#deleteButton" class="tsd-kind-icon">delete<wbr>Button</a>
+								<a href="OtherButtonsOptions.html#position" class="tsd-kind-icon">position</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="OtherButtonsOptions.html" class="tsd-kind-icon">Other<wbr>Buttons<wbr>Options</a>
-					</li>
 					<li class=" tsd-kind-interface">
 						<a href="ReplyMessages.html" class="tsd-kind-icon">Reply<wbr>Messages</a>
 					</li>

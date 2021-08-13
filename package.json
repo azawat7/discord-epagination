@@ -1,11 +1,11 @@
 {
   "name": "discord-epagination",
-  "version": "1.4.2-2",
+  "version": "1.4.3",
   "description": "A discord.js v13 paginator.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "docs": "typedoc src/index.ts --theme ./node_modules/typedoc-theme-slick-dark/bin/default",
+    "docs": "typedoc src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -31,8 +31,24 @@ export const createSlider = async (options: SliderOptions) => {
 
   const createButtons = () => {
     let names: ButtonNames[] = ["back", "foward"];
-    if (otherButtons.backMainButton) names.push("backMain");
-    if (otherButtons.deleteButton) names.push("delete");
+    if (otherButtons.backMainButton.enabled) {
+      if (otherButtons.backMainButton.position === -1) {
+        names = ["backMain", ...names];
+      } else if (otherButtons.backMainButton.position === 1) {
+        names = [...names, "backMain"];
+      } else {
+        names.push("backMain");
+      }
+    }
+    if (otherButtons.deleteButton.enabled) {
+      if (otherButtons.deleteButton.position === -1) {
+        names = ["delete", ...names];
+      } else if (otherButtons.deleteButton.position === 1) {
+        names = [...names, "delete"];
+      } else {
+        names.push("delete");
+      }
+    }
 
     return names.reduce((row: MessageButton[], name: ButtonNames) => {
       row.push(
