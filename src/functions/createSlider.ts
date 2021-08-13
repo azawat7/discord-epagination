@@ -40,7 +40,7 @@ export const createSlider = async (options: SliderOptions) => {
           .setEmoji(getButtonData(name).emoji)
           .setCustomId(name)
           .setDisabled(false)
-          .setStyle("SECONDARY")
+          .setStyle(getButtonData(name).style || "SECONDARY")
       );
       return row;
     }, []);

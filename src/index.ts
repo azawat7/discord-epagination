@@ -8,4 +8,6 @@ export {
   Buttons,
   OtherButtons,
   ReplyMessages,
+  ButtonNames,
+  ButtonStyles,
 } from "./functions/createSlider.interfaces";

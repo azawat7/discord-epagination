@@ -34,14 +34,19 @@ export interface SliderOptions {
 
 export interface Buttons {
   /**
+   * Name of the button.
+   */
+  name: ButtonNames;
+
+  /**
    * Emoji used on the button.
    */
   emoji: string;
 
   /**
-   * Name of the button (needed to recognise the button). Those are : back, foward, backMain, delete
+   * Style of the button.
    */
-  name: string;
+  style?: ButtonStyles;
 }
 
 export interface ReplyMessages {
@@ -65,12 +70,14 @@ export interface OtherButtons {
   /**
    * Indicates if the delete button should be in the slider.
    */
-  deleteButton: boolean;
+  deleteButton?: boolean;
 
   /**
    * Indicates if the back to first page button should be in the slider.
    */
-  backMainButton: boolean;
+  backMainButton?: boolean;
 }
 
 export type ButtonNames = "back" | "foward" | "backMain" | "delete";
+
+export type ButtonStyles = "PRIMARY" | "SECONDARY" | "SUCCESS" | "DANGER";
