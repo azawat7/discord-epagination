@@ -1,12 +1,9 @@
 # discord-epagination is a clone of [discord-slider](https://www.npmjs.com/package/discord-slider) but with more things in in it.
 
-# Docs are finnaly here https://im-a-panda-guy.github.io/discord-pagination/index.html :)
-
 ## Installation
 
 ```sh
 npm i discord-epagination
-
 ```
 
 ## Method
@@ -15,7 +12,7 @@ npm i discord-epagination
 createSlider(options);
 ```
 
-- options () : see [here](https://im-a-panda-guy.github.io/discord-pagination/interfaces/SliderOptions.html)
+- options ([SliderOptions](https://im-a-panda-guy.github.io/discord-pagination/interfaces/SliderOptions.html))
 
 ## Example
 
