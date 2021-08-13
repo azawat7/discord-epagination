@@ -1,4 +1,6 @@
-# discord-epagination is a clone of [discord-slider](https://www.npmjs.com/package/discord-slider) but with more things in in it.
+# discord-epagination
+
+A package to paginate embeds. Compatible with discord.js v13+. Note, it's a package that was make to fix the discord-slider package.
 
 ## Installation
 
@@ -6,7 +8,7 @@
 npm i discord-epagination
 ```
 
-## Method
+## Function
 
 ```js
 createSlider(options);
@@ -17,25 +19,50 @@ createSlider(options);
 ## Example
 
 ```js
+// Import the function from the package
 const { createSlider } = require("discord-epagination");
+// Import MessageEmbed from discord.js
+const { MessageEmbed } = require("discord.js");
 
+// Creates very basic embeds
+const embeds = [];
+for (let i = 0; i < 10; i++) {
+  const embed = new MessageEmbed().setDescription(`Page ${i + 1}`);
+  embeds.push(embed);
+}
+
+// Call the function
 createSlider({
-  message,
-  embeds: [embed1, embed2],
+  // Message object from discord.js
+  message: message,
+  // Array of embeds that will be paginated
+  embeds: embeds,
+  // Reply messages that will be sent (ephemeral) when a button is clicked
   replyMessages: {
+    // Back button reply
     back: "back",
+    // Foward button reply
     foward: "foward",
+    // First page button reply
     backMain: "backmain",
   },
+  // Other buttons
   otherButtons: {
+    // Whether if the first page button should be enabled
     backMainButton: true,
+    // Whether if the delete button should be enabled
     deleteButton: true,
   },
+  // Button customization
   buttons: [
-    { name: "back", emoji: "◀" },
-    { name: "foward", emoji: "▶" },
-    { name: "delete", emoji: "❌" },
-    { name: "backMain", emoji: "↩" },
+    // Customization for the back button
+    { name: "back", emoji: "◀", style: "PRIMARY" },
+    // Customization for the foward button
+    { name: "foward", emoji: "▶", style: "PRIMARY" },
+    // Customization for the first page button
+    { name: "backMain", emoji: "↩", style: "PRIMARY" },
+    // Customization for the delete button
+    { name: "delete", emoji: "❌", style: "DANGER" },
   ],
 });
 ```

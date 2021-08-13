@@ -58,16 +58,17 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#discord-epagination-is-a-clone-of-discord-slider-but-with-more-things-in-in-it" id="discord-epagination-is-a-clone-of-discord-slider-but-with-more-things-in-in-it" style="color: inherit; text-decoration: none;">
-					<h1>discord-epagination is a clone of <a href="https://www.npmjs.com/package/discord-slider">discord-slider</a> but with more things in in it.</h1>
+				<a href="#discord-epagination" id="discord-epagination" style="color: inherit; text-decoration: none;">
+					<h1>discord-epagination</h1>
 				</a>
+				<p>A package to paginate embeds. Compatible with discord.js v13+. Note, it&#39;s a package that was make to fix the discord-slider package.</p>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
 				<pre><code class="language-sh"><span style="color: #000000">npm i discord-epagination</span>
 </code></pre>
-				<a href="#method" id="method" style="color: inherit; text-decoration: none;">
-					<h2>Method</h2>
+				<a href="#function" id="function" style="color: inherit; text-decoration: none;">
+					<h2>Function</h2>
 				</a>
 				<pre><code class="language-js"><span style="color: #795E26">createSlider</span><span style="color: #000000">(</span><span style="color: #001080">options</span><span style="color: #000000">);</span>
 </code></pre>
@@ -77,25 +78,50 @@
 				<a href="#example" id="example" style="color: inherit; text-decoration: none;">
 					<h2>Example</h2>
 				</a>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">createSlider</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;discord-epagination&quot;</span><span style="color: #000000">);</span>
+				<pre><code class="language-js"><span style="color: #008000">// Import the function from the package</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">createSlider</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;discord-epagination&quot;</span><span style="color: #000000">);</span>
+<span style="color: #008000">// Import MessageEmbed from discord.js</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">MessageEmbed</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;discord.js&quot;</span><span style="color: #000000">);</span>
 
+<span style="color: #008000">// Creates very basic embeds</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">embeds</span><span style="color: #000000"> = [];</span>
+<span style="color: #AF00DB">for</span><span style="color: #000000"> (</span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">i</span><span style="color: #000000"> = </span><span style="color: #098658">0</span><span style="color: #000000">; </span><span style="color: #001080">i</span><span style="color: #000000"> &lt; </span><span style="color: #098658">10</span><span style="color: #000000">; </span><span style="color: #001080">i</span><span style="color: #000000">++) {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">embed</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MessageEmbed</span><span style="color: #000000">().</span><span style="color: #795E26">setDescription</span><span style="color: #000000">(</span><span style="color: #A31515">`Page </span><span style="color: #0000FF">${</span><span style="color: #001080">i</span><span style="color: #000000FF"> </span><span style="color: #000000">+</span><span style="color: #000000FF"> </span><span style="color: #098658">1</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">);</span>
+<span style="color: #000000">  </span><span style="color: #001080">embeds</span><span style="color: #000000">.</span><span style="color: #795E26">push</span><span style="color: #000000">(</span><span style="color: #001080">embed</span><span style="color: #000000">);</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #008000">// Call the function</span>
 <span style="color: #795E26">createSlider</span><span style="color: #000000">({</span>
-<span style="color: #000000">  </span><span style="color: #001080">message</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">embeds:</span><span style="color: #000000"> [</span><span style="color: #001080">embed1</span><span style="color: #000000">, </span><span style="color: #001080">embed2</span><span style="color: #000000">],</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Message object from discord.js</span>
+<span style="color: #000000">  </span><span style="color: #001080">message:</span><span style="color: #000000"> </span><span style="color: #001080">message</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Array of embeds that will be paginated</span>
+<span style="color: #000000">  </span><span style="color: #001080">embeds:</span><span style="color: #000000"> </span><span style="color: #001080">embeds</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Reply messages that will be sent (ephemeral) when a button is clicked</span>
 <span style="color: #000000">  </span><span style="color: #001080">replyMessages:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Back button reply</span>
 <span style="color: #000000">    </span><span style="color: #001080">back:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;back&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Foward button reply</span>
 <span style="color: #000000">    </span><span style="color: #001080">foward:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;foward&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #008000">// First page button reply</span>
 <span style="color: #000000">    </span><span style="color: #001080">backMain:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;backmain&quot;</span><span style="color: #000000">,</span>
 <span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Other buttons</span>
 <span style="color: #000000">  </span><span style="color: #001080">otherButtons:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Whether if the first page button should be enabled</span>
 <span style="color: #000000">    </span><span style="color: #001080">backMainButton:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Whether if the delete button should be enabled</span>
 <span style="color: #000000">    </span><span style="color: #001080">deleteButton:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
 <span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Button customization</span>
 <span style="color: #000000">  </span><span style="color: #001080">buttons:</span><span style="color: #000000"> [</span>
-<span style="color: #000000">    { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;back&quot;</span><span style="color: #000000">, </span><span style="color: #001080">emoji:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;◀&quot;</span><span style="color: #000000"> },</span>
-<span style="color: #000000">    { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;foward&quot;</span><span style="color: #000000">, </span><span style="color: #001080">emoji:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;▶&quot;</span><span style="color: #000000"> },</span>
-<span style="color: #000000">    { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;delete&quot;</span><span style="color: #000000">, </span><span style="color: #001080">emoji:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;❌&quot;</span><span style="color: #000000"> },</span>
-<span style="color: #000000">    { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;backMain&quot;</span><span style="color: #000000">, </span><span style="color: #001080">emoji:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;↩&quot;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Customization for the back button</span>
+<span style="color: #000000">    { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;back&quot;</span><span style="color: #000000">, </span><span style="color: #001080">emoji:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;◀&quot;</span><span style="color: #000000">, </span><span style="color: #001080">style:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;PRIMARY&quot;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Customization for the foward button</span>
+<span style="color: #000000">    { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;foward&quot;</span><span style="color: #000000">, </span><span style="color: #001080">emoji:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;▶&quot;</span><span style="color: #000000">, </span><span style="color: #001080">style:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;PRIMARY&quot;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Customization for the first page button</span>
+<span style="color: #000000">    { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;backMain&quot;</span><span style="color: #000000">, </span><span style="color: #001080">emoji:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;↩&quot;</span><span style="color: #000000">, </span><span style="color: #001080">style:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;PRIMARY&quot;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Customization for the delete button</span>
+<span style="color: #000000">    { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;delete&quot;</span><span style="color: #000000">, </span><span style="color: #001080">emoji:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;❌&quot;</span><span style="color: #000000">, </span><span style="color: #001080">style:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;DANGER&quot;</span><span style="color: #000000"> },</span>
 <span style="color: #000000">  ],</span>
 <span style="color: #000000">});</span>
 </code></pre>

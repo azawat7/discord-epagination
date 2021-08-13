@@ -1,6 +1,6 @@
 {
   "name": "discord-epagination",
-  "version": "1.4.2",
+  "version": "1.4.2-0",
   "description": "A advanced discord paginator.",
   "main": "dist/index.js",
   "scripts": {
@@ -15,9 +15,10 @@
   "keywords": [
     "discord.js",
     "pagination",
+    "paginator",
+    "paginate",
     "slider",
-    "pages",
-    "discord"
+    "buttons"
   ],
   "author": "im_a_panda_guy <az4wat@gmail.com>",
   "license": "MIT",
