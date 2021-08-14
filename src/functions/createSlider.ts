@@ -32,19 +32,15 @@ export const createSlider = async (options: SliderOptions) => {
   const createButtons = () => {
     let names: ButtonNames[] = ["back", "foward"];
     if (otherButtons.backMainButton.enabled) {
-      if (otherButtons.backMainButton.position === -1) {
-        names = ["backMain", ...names];
-      } else if (otherButtons.backMainButton.position === 1) {
-        names = [...names, "backMain"];
+      if (otherButtons.backMainButton.position >= 0) {
+        names.splice(otherButtons.backMainButton.position, 0, "backMain");
       } else {
         names.push("backMain");
       }
     }
     if (otherButtons.deleteButton.enabled) {
-      if (otherButtons.deleteButton.position === -1) {
-        names = ["delete", ...names];
-      } else if (otherButtons.deleteButton.position === 1) {
-        names = [...names, "delete"];
+      if (otherButtons.deleteButton.position >= 0) {
+        names.splice(otherButtons.deleteButton.position, 0, "delete");
       } else {
         names.push("delete");
       }

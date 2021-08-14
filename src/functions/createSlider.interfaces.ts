@@ -85,9 +85,13 @@ export interface OtherButtonsOptions {
   enabled: boolean;
 
   /**
-   * Position of the button in the row (the back and foward button has an index of 0). To make it behind those two, put in -1 and to make it in front, put in 1.
+   * Position of the button in the row. You need to set a positive index,
+   * the default buttons (back, foward) are in the array and you can't change
+   * their position and the back to first page button is the first button
+   * that will receive the position and the delete button after. So make sure
+   * to set a correct index if you want to do something very specific.
    */
-  position: number;
+  position?: number;
 }
 
 export type ButtonNames = "back" | "foward" | "backMain" | "delete";

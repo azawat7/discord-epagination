@@ -102,7 +102,7 @@
 					<div class="tsd-signature tsd-kind-icon">enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/im-a-panda-guy/discord-pagination/blob/05b5028/src/functions/createSlider.interfaces.ts#L85">functions/createSlider.interfaces.ts:85</a></li>
+							<li>Defined in <a href="https://github.com/im-a-panda-guy/discord-pagination/blob/fbd037c/src/functions/createSlider.interfaces.ts#L85">functions/createSlider.interfaces.ts:85</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -113,16 +113,20 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="position" class="tsd-anchor"></a>
-					<h3>position</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> position</h3>
 					<div class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/im-a-panda-guy/discord-pagination/blob/05b5028/src/functions/createSlider.interfaces.ts#L90">functions/createSlider.interfaces.ts:90</a></li>
+							<li>Defined in <a href="https://github.com/im-a-panda-guy/discord-pagination/blob/fbd037c/src/functions/createSlider.interfaces.ts#L94">functions/createSlider.interfaces.ts:94</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Position of the button in the row (the back and foward button has an index of 0). To make it behind those two, put in -1 and to make it in front, put in 1.</p>
+							<p>Position of the button in the row. You need to set a positive index,
+								the default buttons (back, foward) are in the array and you can&#39;t change
+								their position and the back to first page button is the first button
+								that will receive the position and the delete button after. So make sure
+							to set a correct index if you want to do something very specific.</p>
 						</div>
 					</div>
 				</section>
