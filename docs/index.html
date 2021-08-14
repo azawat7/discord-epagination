@@ -1,193 +1,157 @@
-<!doctype html>
-<html class="default no-js">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>discord-epagination</title>
-	<meta name="description" content="Documentation for discord-epagination">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script async src="assets/js/search.js" id="search-script"></script>
+    <meta charset="utf-8">
+    <title>Home</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/nav.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.3/fuse.min.js"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link type="text/css" rel="stylesheet" href="styles/skyceil.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
+
 <body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">discord-epagination</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<h1>discord-epagination</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#discord-epagination" id="discord-epagination" style="color: inherit; text-decoration: none;">
-					<h1>discord-epagination</h1>
-				</a>
-				<p>A package to paginate embeds. Compatible with discord.js v13+. Note, it&#39;s a package that was make to fix the discord-slider package.</p>
-				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-					<h2>Installation</h2>
-				</a>
-				<pre><code class="language-sh"><span style="color: #000000">npm i discord-epagination</span>
-</code></pre>
-				<a href="#function" id="function" style="color: inherit; text-decoration: none;">
-					<h2>Function</h2>
-				</a>
-				<pre><code class="language-js"><span style="color: #795E26">createSlider</span><span style="color: #000000">(</span><span style="color: #001080">options</span><span style="color: #000000">);</span>
-</code></pre>
-				<ul>
-					<li>options (<a href="https://im-a-panda-guy.github.io/discord-pagination/interfaces/SliderOptions.html">SliderOptions</a>)</li>
-				</ul>
-				<a href="#example" id="example" style="color: inherit; text-decoration: none;">
-					<h2>Example</h2>
-				</a>
-				<pre><code class="language-js"><span style="color: #008000">// Import the function from the package</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">createSlider</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;discord-epagination&quot;</span><span style="color: #000000">);</span>
-<span style="color: #008000">// Import MessageEmbed from discord.js</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">MessageEmbed</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;discord.js&quot;</span><span style="color: #000000">);</span>
 
-<span style="color: #008000">// Creates very basic embeds</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">embeds</span><span style="color: #000000"> = [];</span>
-<span style="color: #AF00DB">for</span><span style="color: #000000"> (</span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">i</span><span style="color: #000000"> = </span><span style="color: #098658">0</span><span style="color: #000000">; </span><span style="color: #001080">i</span><span style="color: #000000"> &lt; </span><span style="color: #098658">10</span><span style="color: #000000">; </span><span style="color: #001080">i</span><span style="color: #000000">++) {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">embed</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MessageEmbed</span><span style="color: #000000">().</span><span style="color: #795E26">setDescription</span><span style="color: #000000">(</span><span style="color: #A31515">`Page </span><span style="color: #0000FF">${</span><span style="color: #001080">i</span><span style="color: #000000FF"> </span><span style="color: #000000">+</span><span style="color: #000000FF"> </span><span style="color: #098658">1</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">);</span>
-<span style="color: #000000">  </span><span style="color: #001080">embeds</span><span style="color: #000000">.</span><span style="color: #795E26">push</span><span style="color: #000000">(</span><span style="color: #001080">embed</span><span style="color: #000000">);</span>
-<span style="color: #000000">}</span>
+<nav class="navbar">
+    <div class="utilities">
+        <div id="search">
+            <input type="text" id="search-box" placeholder="Search"><br>
+            <div id="search-results" style="display: none;"></div>
+        </div>
+        <button class="theme" data-theme="light"><i class="fas fa-moon"></i></button>
+    </div>
+    <hr>
+    <h4><a href="index.html">Home</a></h4><h4>Global</h4><ul><li><a href="global.html#createSlider">createSlider</a></li></ul>
+</nav>
 
-<span style="color: #008000">// Call the function</span>
-<span style="color: #795E26">createSlider</span><span style="color: #000000">({</span>
-<span style="color: #000000">  </span><span style="color: #008000">// Message object from discord.js</span>
-<span style="color: #000000">  </span><span style="color: #001080">message:</span><span style="color: #000000"> </span><span style="color: #001080">message</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #008000">// Array of embeds that will be paginated</span>
-<span style="color: #000000">  </span><span style="color: #001080">embeds:</span><span style="color: #000000"> </span><span style="color: #001080">embeds</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #008000">// Reply messages that will be sent (ephemeral) when a button is clicked</span>
-<span style="color: #000000">  </span><span style="color: #001080">replyMessages:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #008000">// Back button reply</span>
-<span style="color: #000000">    </span><span style="color: #001080">back:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;back&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #008000">// Foward button reply</span>
-<span style="color: #000000">    </span><span style="color: #001080">foward:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;foward&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #008000">// First page button reply</span>
-<span style="color: #000000">    </span><span style="color: #001080">backMain:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;backmain&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  },</span>
-<span style="color: #000000">  </span><span style="color: #008000">// Other buttons</span>
-<span style="color: #000000">  </span><span style="color: #001080">otherButtons:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #008000">// First page button</span>
-<span style="color: #000000">    </span><span style="color: #001080">backMainButton:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">      </span><span style="color: #001080">enabled:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
-<span style="color: #000000">      </span><span style="color: #008000">// Make the button behind the back and foward buttons.</span>
-<span style="color: #000000">      </span><span style="color: #001080">position:</span><span style="color: #000000"> -</span><span style="color: #098658">1</span><span style="color: #000000">,</span>
-<span style="color: #000000">    },</span>
-<span style="color: #000000">    </span><span style="color: #008000">// Delete button</span>
-<span style="color: #000000">    </span><span style="color: #001080">deleteButton:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">      </span><span style="color: #001080">enabled:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
-<span style="color: #000000">      </span><span style="color: #008000">// Make the button in front of the back and foward buttons.</span>
-<span style="color: #000000">      </span><span style="color: #001080">position:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">,</span>
-<span style="color: #000000">    },</span>
-<span style="color: #000000">  },</span>
-<span style="color: #000000">  </span><span style="color: #008000">// Button customization</span>
-<span style="color: #000000">  </span><span style="color: #001080">buttons:</span><span style="color: #000000"> [</span>
-<span style="color: #000000">    </span><span style="color: #008000">// Customization for the back button</span>
-<span style="color: #000000">    { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;back&quot;</span><span style="color: #000000">, </span><span style="color: #001080">emoji:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;◀&quot;</span><span style="color: #000000">, </span><span style="color: #001080">style:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;PRIMARY&quot;</span><span style="color: #000000"> },</span>
-<span style="color: #000000">    </span><span style="color: #008000">// Customization for the foward button</span>
-<span style="color: #000000">    { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;foward&quot;</span><span style="color: #000000">, </span><span style="color: #001080">emoji:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;▶&quot;</span><span style="color: #000000">, </span><span style="color: #001080">style:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;PRIMARY&quot;</span><span style="color: #000000"> },</span>
-<span style="color: #000000">    </span><span style="color: #008000">// Customization for the first page button</span>
-<span style="color: #000000">    { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;backMain&quot;</span><span style="color: #000000">, </span><span style="color: #001080">emoji:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;↩&quot;</span><span style="color: #000000">, </span><span style="color: #001080">style:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;PRIMARY&quot;</span><span style="color: #000000"> },</span>
-<span style="color: #000000">    </span><span style="color: #008000">// Customization for the delete button</span>
-<span style="color: #000000">    { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;delete&quot;</span><span style="color: #000000">, </span><span style="color: #001080">emoji:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;❌&quot;</span><span style="color: #000000">, </span><span style="color: #001080">style:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;DANGER&quot;</span><span style="color: #000000"> },</span>
-<span style="color: #000000">  ],</span>
-<span style="color: #000000">});</span>
+<div id="main">
+    <div class="burger">
+        <div class="burger-line-1"></div>
+        <div class="burger-line-2"></div>
+        <div class="burger-line-3"></div>
+    </div>
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <hr>
+    <section>
+        <article><h1>discord-epagination</h1>
+<p>A package to paginate embeds. Compatible with discord.js v13+. Note, it's a package that was make to fix the discord-slider package.</p>
+<p align="center">
+  <a href="https://www.npmjs.com/package/discord-epagination"><img src="https://nodei.co/npm/discord-epagination.png?downloadRank=true&downloads=true&downloadRank=true&stars=true" /></a><br>
+</p>
+<h2>Installation</h2>
+<pre class="prettyprint linenums source lang-sh"><code>npm i discord-epagination
 </code></pre>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="modules.html">Exports</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/Buttons.html" class="tsd-kind-icon">Buttons</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/OtherButtons.html" class="tsd-kind-icon">Other<wbr>Buttons</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/OtherButtonsOptions.html" class="tsd-kind-icon">Other<wbr>Buttons<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ReplyMessages.html" class="tsd-kind-icon">Reply<wbr>Messages</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/SliderOptions.html" class="tsd-kind-icon">Slider<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#ButtonNames" class="tsd-kind-icon">Button<wbr>Names</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#ButtonStyles" class="tsd-kind-icon">Button<wbr>Styles</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#createSlider" class="tsd-kind-icon">create<wbr>Slider</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
+<h2>Function</h2>
+<pre class="prettyprint linenums source lang-js"><code>createSlider(options);
+</code></pre>
+<ul>
+<li>options (<a href="https://im-a-panda-guy.github.io/discord-pagination/global.html#SliderOptions">SliderOptions</a>)</li>
+</ul>
+<h2>Example</h2>
+<pre class="prettyprint linenums source lang-js"><code>// Import the function from the package
+const { createSlider } = require(&quot;discord-epagination&quot;);
+// Import MessageEmbed from discord.js
+const { MessageEmbed } = require(&quot;discord.js&quot;);
+
+// Creates very basic embeds
+const embeds = [];
+for (let i = 0; i &lt; 10; i++) {
+  const embed = new MessageEmbed().setDescription(`Page ${i + 1}`);
+  embeds.push(embed);
+}
+
+// Call the function
+createSlider({
+  // Message object from discord.js
+  message: message,
+  // Array of embeds that will be paginated
+  embeds: embeds,
+  // Reply messages that will be sent (ephemeral) when a button is clicked
+  replyMessages: {
+    // Back button reply
+    back: &quot;back&quot;,
+    // Foward button reply
+    foward: &quot;foward&quot;,
+    // First page button reply
+    backMain: &quot;backmain&quot;,
+  },
+  // Other buttons
+  otherButtons: {
+    // First page button
+    backMainButton: {
+      enabled: true,
+      // Make the button behind the back and foward buttons.
+      position: 0,
+    },
+    // Delete button
+    deleteButton: {
+      enabled: true,
+      // Make the button in front of the back and foward buttons.
+      position: 2,
+    },
+  },
+  // Button customization
+  buttons: [
+    // Customization for the back button
+    { name: &quot;back&quot;, emoji: &quot;◀&quot;, style: &quot;PRIMARY&quot; },
+    // Customization for the foward button
+    { name: &quot;foward&quot;, emoji: &quot;▶&quot;, style: &quot;PRIMARY&quot; },
+    // Customization for the first page button
+    { name: &quot;backMain&quot;, emoji: &quot;↩&quot;, style: &quot;PRIMARY&quot; },
+    // Customization for the delete button
+    { name: &quot;delete&quot;, emoji: &quot;❌&quot;, style: &quot;DANGER&quot; },
+  ],
+});
+</code></pre></article>
+    </section>
+
+
+
+
+
+
+
 </div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-			</ul>
-		</div>
-	</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> using <a href="https://github.com/devsnowflake/jsdoc-skyceil">Skyceil Theme</a>
 </footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
 </body>
 </html>

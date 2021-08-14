@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Global</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/nav.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.3/fuse.min.js"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link type="text/css" rel="stylesheet" href="styles/skyceil.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="utilities">
+        <div id="search">
+            <input type="text" id="search-box" placeholder="Search"><br>
+            <div id="search-results" style="display: none;"></div>
+        </div>
+        <button class="theme" data-theme="light"><i class="fas fa-moon"></i></button>
+    </div>
+    <hr>
+    <h4><a href="index.html">Home</a></h4><h4>Global</h4><ul><li><a href="global.html#createSlider">createSlider</a></li></ul>
+</nav>
+
+<div id="main">
+    <div class="burger">
+        <div class="burger-line-1"></div>
+        <div class="burger-line-2"></div>
+        <div class="burger-line-3"></div>
+    </div>
+
+    <h1 class="page-title">Global</h1>
+
+    
+
+
+
+
+<section>
+<header>
+    <hr>
+    
+        <h2></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="createSlider"><span class="type-signature">(async) </span>createSlider<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Create a slider.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<div class="table-box">
+    <table class="params">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            <tr>
+                
+                    <td class="name"><code>options</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type"><a href="global.html#SliderOptions">SliderOptions</a></span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Slide</p></td>
+            </tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>void</p>
+</div>
+
+
+
+<ul>
+    <li>
+        Type: <span class="simple-code">
+<span class="param-type">Promise.&lt;void></span>
+
+</span>
+    </li>
+</ul>
+
+    
+
+
+
+
+
+<hr>
+        
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id="Buttons">Buttons</h4>
+
+
+
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<div class="table-box">
+    <table class="props">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            <tr>
+                
+                    <td class="name"><code>name</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type">ButtonNames</span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Name of the button.</p></td>
+            </tr>
+
+        
+
+            <tr>
+                
+                    <td class="name"><code>emoji</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type">string</span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Emoji used on the button.</p></td>
+            </tr>
+
+        
+
+            <tr>
+                
+                    <td class="name"><code>style</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type">ButtonStyles</span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Style of the button.</p></td>
+            </tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+<hr>
+            
+                
+<h4 class="name" id="OtherButtons">OtherButtons</h4>
+
+
+
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<div class="table-box">
+    <table class="props">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            <tr>
+                
+                    <td class="name"><code>deleteButton</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type"><a href="global.html#OtherButtonsOptions">OtherButtonsOptions</a></span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Indicates if the delete button should be in the slider.</p></td>
+            </tr>
+
+        
+
+            <tr>
+                
+                    <td class="name"><code>backMainButton</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type"><a href="global.html#OtherButtonsOptions">OtherButtonsOptions</a></span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Indicates if the back to first page button should be in the slider.</p></td>
+            </tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+<hr>
+            
+                
+<h4 class="name" id="OtherButtonsOptions">OtherButtonsOptions</h4>
+
+
+
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<div class="table-box">
+    <table class="props">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            <tr>
+                
+                    <td class="name"><code>enabled</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type">boolean</span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Whether the button should be enabled or not.</p></td>
+            </tr>
+
+        
+
+            <tr>
+                
+                    <td class="name"><code>position</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type">number</span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Position of the button in the row. You need to set a positive index, the default buttons (back, foward) are in the array and you can't change their position and the back to first page button is the first button that will receive the position and the delete button after. So make sure to set a correct index if you want to do something very specific.</p></td>
+            </tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+<hr>
+            
+                
+<h4 class="name" id="ReplyMessages">ReplyMessages</h4>
+
+
+
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<div class="table-box">
+    <table class="props">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            <tr>
+                
+                    <td class="name"><code>back</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type">string</span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Reply sent when the back button is clicked.</p></td>
+            </tr>
+
+        
+
+            <tr>
+                
+                    <td class="name"><code>foward</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type">string</span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Reply sent when the foward button is clicked.</p></td>
+            </tr>
+
+        
+
+            <tr>
+                
+                    <td class="name"><code>backMain</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type">string</span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Reply sent when the back to first page button is clicked.</p></td>
+            </tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+<hr>
+            
+                
+<h4 class="name" id="SliderOptions">SliderOptions</h4>
+
+
+
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<div class="table-box">
+    <table class="props">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            <tr>
+                
+                    <td class="name"><code>message</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type">Message</span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Discord.js message resolvable.</p></td>
+            </tr>
+
+        
+
+            <tr>
+                
+                    <td class="name"><code>embeds</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type">Array.&lt;MessageEmbed></span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Array of Embeds to use in the slider.</p></td>
+            </tr>
+
+        
+
+            <tr>
+                
+                    <td class="name"><code>replyMessages</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type"><a href="global.html#ReplyMessages">ReplyMessages</a></span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Messages that will be sent (in ephemeral mode) when a button is clicked.</p></td>
+            </tr>
+
+        
+
+            <tr>
+                
+                    <td class="name"><code>buttons</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type">Array.&lt;<a href="global.html#Buttons">Buttons</a>></span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Options for your buttons.</p></td>
+            </tr>
+
+        
+
+            <tr>
+                
+                    <td class="name"><code>time</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type">number</span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>The time (in milliseconds) that the buttons can be interactable.</p></td>
+            </tr>
+
+        
+
+            <tr>
+                
+                    <td class="name"><code>otherButtons</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type"><a href="global.html#OtherButtons">OtherButtons</a></span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Other buttons.</p></td>
+            </tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+<hr>
+            
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> using <a href="https://github.com/devsnowflake/jsdoc-skyceil">Skyceil Theme</a>
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+</body>
+</html>

@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "docs": "typedoc src/index.ts",
+    "docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,7 +30,8 @@
     "discord.js": "^13.0.1"
   },
   "devDependencies": {
-    "typedoc": "^0.21.5",
+    "jsdoc": "^3.6.7",
+    "jsdoc-skyceil": "^2.0.0",
     "typescript": "^4.3.5"
   }
 }

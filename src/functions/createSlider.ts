@@ -12,8 +12,56 @@ import {
   ReplyMessages,
   OtherButtons,
   ButtonNames,
+  ButtonStyles,
+  OtherButtonsOptions,
 } from "./createSlider.interfaces";
 
+/**
+ * @typedef SliderOptions
+ *
+ * @property {Message} message Discord.js message resolvable.
+ * @property {MessageEmbed[]} embeds Array of Embeds to use in the slider.
+ * @property {ReplyMessages} replyMessages  Messages that will be sent (in ephemeral mode) when a button is clicked.
+ * @property {Buttons[]} buttons Options for your buttons.
+ * @property {number} time The time (in milliseconds) that the buttons can be interactable.
+ * @property {OtherButtons} otherButtons Other buttons.
+ */
+
+/**
+ * @typedef Buttons
+ *
+ * @property {ButtonNames} name Name of the button.
+ * @property {string} emoji Emoji used on the button.
+ * @property {ButtonStyles} style Style of the button.
+ */
+
+/**
+ * @typedef ReplyMessages
+ *
+ * @property {string} back Reply sent when the back button is clicked.
+ * @property {string} foward Reply sent when the foward button is clicked.
+ * @property {string} backMain Reply sent when the back to first page button is clicked.
+ */
+
+/**
+ * @typedef OtherButtons
+ *
+ * @property {OtherButtonsOptions} deleteButton Indicates if the delete button should be in the slider.
+ * @property {OtherButtonsOptions} backMainButton Indicates if the back to first page button should be in the slider.
+ */
+
+/**
+ * @typedef OtherButtonsOptions
+ *
+ * @property {boolean} enabled Whether the button should be enabled or not.
+ * @property {number} position Position of the button in the row. You need to set a positive index, the default buttons (back, foward) are in the array and you can't change their position and the back to first page button is the first button that will receive the position and the delete button after. So make sure to set a correct index if you want to do something very specific.
+ */
+
+/**
+ * Create a slider.
+ * @param {SliderOptions} options Slide
+ * @returns {Promise<void>} void
+ */
 export const createSlider = async (options: SliderOptions) => {
   if (typeof options !== "object" || !options)
     throw new TypeError("discord-epagination: options must be a object");
