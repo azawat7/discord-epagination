@@ -5,7 +5,7 @@ export { createSlider } from "./functions/createSlider";
  */
 export {
   SliderOptions,
-  Buttons,
+  Button,
   OtherButtons,
   ReplyMessages,
   ButtonNames,

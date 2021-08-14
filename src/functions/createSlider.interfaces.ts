@@ -19,7 +19,7 @@ export interface SliderOptions {
   /**
    *  Options for your buttons.
    */
-  buttons: Buttons[];
+  buttons: Button[];
 
   /**
    * The time (in milliseconds) that the buttons can be interactable.
@@ -32,7 +32,7 @@ export interface SliderOptions {
   otherButtons: OtherButtons;
 }
 
-export interface Buttons {
+export interface Button {
   /**
    * Name of the button.
    */

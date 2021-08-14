@@ -5,10 +5,9 @@ import {
   ButtonInteraction,
   MessageEmbed,
 } from "discord.js";
-import { isGetAccessor } from "typescript";
 import {
   SliderOptions,
-  Buttons,
+  Button,
   ReplyMessages,
   OtherButtons,
   ButtonNames,
@@ -23,14 +22,14 @@ import {
  * @property {Message} message Discord.js message resolvable.
  * @property {MessageEmbed[]} embeds Array of Embeds to use in the slider.
  * @property {ReplyMessages} replyMessages  Messages that will be sent (in ephemeral mode) when a button is clicked.
- * @property {Buttons[]} buttons Options for your buttons.
+ * @property {Button[]} buttons Options for your buttons.
  * @property {number} time The time (in milliseconds) that the buttons can be interactable.
  * @property {OtherButtons} otherButtons Other buttons.
  */
 
 /**
  * Button resolvable.
- * @typedef Buttons
+ * @typedef Button
  *
  * @property {ButtonNames} name Name of the button.
  * @property {string} emoji Emoji used on the button.
@@ -60,6 +59,24 @@ import {
  *
  * @property {boolean} enabled Whether the button should be enabled or not.
  * @property {number} position Position of the button in the row. You need to set a positive index, the default buttons (back, foward) are in the array and you can't change their position and the back to first page button is the first button that will receive the position and the delete button after. So make sure to set a correct index if you want to do something very specific.
+ */
+
+/**
+ * Valid button names.
+ * * `back`
+ * * `foward`
+ * * `backMain`
+ * * `delete`
+ * @typedef {string} ButtonNames
+ */
+
+/**
+ * Valid button names.
+ * * `PRIMARY`
+ * * `SECONDARY`
+ * * `SUCCESS`
+ * * `DANGER`
+ * @typedef {string} ButtonStyles
  */
 
 /**
