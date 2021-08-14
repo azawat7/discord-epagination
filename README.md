@@ -2,6 +2,10 @@
 
 A package to paginate embeds. Compatible with discord.js v13+. Note, it's a package that was make to fix the discord-slider package.
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/discord-epagination"><img src="https://nodei.co/npm/discord-epagination.png?downloadRank=true&downloads=true&downloadRank=true&stars=true" /></a><br>
+</p>
+
 ## Installation
 
 ```sh
@@ -52,13 +56,13 @@ createSlider({
     backMainButton: {
       enabled: true,
       // Make the button behind the back and foward buttons.
-      position: -1,
+      position: 0,
     },
     // Delete button
     deleteButton: {
       enabled: true,
       // Make the button in front of the back and foward buttons.
-      position: 1,
+      position: 2,
     },
   },
   // Button customization
