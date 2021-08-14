@@ -17,6 +17,7 @@ import {
 } from "./createSlider.interfaces";
 
 /**
+ * Options for the slider.
  * @typedef SliderOptions
  *
  * @property {Message} message Discord.js message resolvable.
@@ -28,6 +29,7 @@ import {
  */
 
 /**
+ * Button resolvable.
  * @typedef Buttons
  *
  * @property {ButtonNames} name Name of the button.
@@ -36,6 +38,7 @@ import {
  */
 
 /**
+ * Reply messages.
  * @typedef ReplyMessages
  *
  * @property {string} back Reply sent when the back button is clicked.
@@ -44,6 +47,7 @@ import {
  */
 
 /**
+ * Other buttons (delete, backMain).
  * @typedef OtherButtons
  *
  * @property {OtherButtonsOptions} deleteButton Indicates if the delete button should be in the slider.
@@ -51,6 +55,7 @@ import {
  */
 
 /**
+ * Options for the other buttons (delete, backMain).
  * @typedef OtherButtonsOptions
  *
  * @property {boolean} enabled Whether the button should be enabled or not.

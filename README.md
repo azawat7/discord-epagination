@@ -18,7 +18,7 @@ npm i discord-epagination
 createSlider(options);
 ```
 
-- options ([SliderOptions](https://im-a-panda-guy.github.io/discord-pagination/global.html#SliderOptions))
+- options ([SliderOptions](https://discord-epagination.js.org/global.html#SliderOptions))
 
 ## Example
 
