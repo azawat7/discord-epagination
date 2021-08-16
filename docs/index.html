@@ -70,7 +70,11 @@
   <a href="https://www.npmjs.com/package/discord-epagination"><img src="https://nodei.co/npm/discord-epagination.png?downloadRank=true&downloads=true&downloadRank=true&stars=true" /></a><br>
 </p>
 <h2>Installation</h2>
+<p>To install the latest version :</p>
 <pre class="prettyprint linenums source lang-sh"><code>npm i discord-epagination
+</code></pre>
+<p>To install a specific version :</p>
+<pre class="prettyprint linenums source lang-sh"><code>npm i discord-epagination@version
 </code></pre>
 <h2>Function</h2>
 <pre class="prettyprint linenums source lang-js"><code>createSlider(options);
@@ -104,20 +108,28 @@ createSlider({
     // Foward button reply
     foward: &quot;foward&quot;,
     // First page button reply
-    backMain: &quot;backmain&quot;,
+    first: &quot;first&quot;,
+    // Last page button reply
+    last: &quot;last&quot;,
   },
   // Other buttons
   otherButtons: {
     // First page button
-    backMainButton: {
+    firstButton: {
       enabled: true,
-      // Make the button behind the back and foward buttons.
+      // Make the button behind the back and foward buttons. [..., &quot;previous&quot;, &quot;next&quot;]
       position: 0,
+    },
+    // Last page button
+    lastButton: {
+      enabled: true,
+      // Make the button in front of the back and foward buttons. [&quot;first&quot;, &quot;previous&quot;, &quot;next&quot;, ...]
+      position: 3,
     },
     // Delete button
     deleteButton: {
       enabled: true,
-      // Make the button in front of the back and foward buttons.
+      // Make the button in the middle of all the buttons. [&quot;first&quot;, &quot;previous&quot;, ... , &quot;next&quot;, &quot;last&quot;]
       position: 2,
     },
   },
@@ -128,10 +140,14 @@ createSlider({
     // Customization for the foward button
     { name: &quot;foward&quot;, emoji: &quot;▶&quot;, style: &quot;PRIMARY&quot; },
     // Customization for the first page button
-    { name: &quot;backMain&quot;, emoji: &quot;↩&quot;, style: &quot;PRIMARY&quot; },
+    { name: &quot;first&quot;, emoji: &quot;⏪&quot;, style: &quot;PRIMARY&quot; },
+    // Customization for the last page button
+    { name: &quot;last&quot;, emoji: &quot;⏩&quot;, style: &quot;PRIMARY&quot; },
     // Customization for the delete button
     { name: &quot;delete&quot;, emoji: &quot;❌&quot;, style: &quot;DANGER&quot; },
   ],
+  // Duration wich will define how much time the buttons will be interactable.
+  time: 60000,
 });
 </code></pre></article>
     </section>

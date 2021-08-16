@@ -42,30 +42,33 @@ import {
  *
  * @property {string} back Reply sent when the back button is clicked.
  * @property {string} foward Reply sent when the foward button is clicked.
- * @property {string} backMain Reply sent when the back to first page button is clicked.
+ * @property {string} first Reply sent when the back to first page button is clicked.
+ * @property {string} last Reply sent when the back to last page button is clicked.
  */
 
 /**
- * Other buttons (delete, backMain).
+ * Other buttons (delete, first, last).
  * @typedef OtherButtons
  *
  * @property {OtherButtonsOptions} deleteButton Indicates if the delete button should be in the slider.
- * @property {OtherButtonsOptions} backMainButton Indicates if the back to first page button should be in the slider.
+ * @property {OtherButtonsOptions} firstButton Indicates if the first page button should be in the slider.
+ * @property {OtherButtonsOptions} lastButton Indicates if the last page button should be in the slider.
  */
 
 /**
- * Options for the other buttons (delete, backMain).
+ * Options for the other buttons (delete, first, last).
  * @typedef OtherButtonsOptions
  *
  * @property {boolean} enabled Whether the button should be enabled or not.
- * @property {number} position Position of the button in the row. You need to set a positive index, the default buttons (back, foward) are in the array and you can't change their position and the back to first page button is the first button that will receive the position and the delete button after. So make sure to set a correct index if you want to do something very specific.
+ * @property {number} position Position of the button in the row. You need to set a positive index, the default buttons (back, foward) are in the array and you can't change their positio. Don't forget that the buttons are receiveing position in this order : first -> last -> delete, so make sure to set a correct index if you want to do something very specific.
  */
 
 /**
  * Valid button names.
  * * `back`
  * * `foward`
- * * `backMain`
+ * * `first`
+ * * `last`
  * * `delete`
  * @typedef {string} ButtonNames
  */
@@ -99,13 +102,20 @@ export const createSlider = async (options: SliderOptions) => {
     return buttons?.find((btn) => btn.name === name);
   };
 
-  const createButtons = () => {
+  const createButtons = (state?: boolean) => {
     let names: ButtonNames[] = ["back", "foward"];
-    if (otherButtons.backMainButton.enabled) {
-      if (otherButtons.backMainButton.position >= 0) {
-        names.splice(otherButtons.backMainButton.position, 0, "backMain");
+    if (otherButtons.firstButton.enabled) {
+      if (otherButtons.firstButton.position >= 0) {
+        names.splice(otherButtons.firstButton.position, 0, "first");
       } else {
-        names.push("backMain");
+        names.push("first");
+      }
+    }
+    if (otherButtons.lastButton.enabled) {
+      if (otherButtons.lastButton.position >= 0) {
+        names.splice(otherButtons.lastButton.position, 0, "last");
+      } else {
+        names.push("last");
       }
     }
     if (otherButtons.deleteButton.enabled) {
@@ -121,7 +131,7 @@ export const createSlider = async (options: SliderOptions) => {
         new MessageButton()
           .setEmoji(getButtonData(name).emoji)
           .setCustomId(name)
-          .setDisabled(false)
+          .setDisabled(state)
           .setStyle(getButtonData(name).style || "SECONDARY")
       );
       return row;
@@ -129,7 +139,7 @@ export const createSlider = async (options: SliderOptions) => {
   };
 
   const msgButtons = (state?: boolean) => [
-    new MessageActionRow().addComponents(createButtons()),
+    new MessageActionRow().addComponents(createButtons(state || false)),
   ];
 
   const sliderMessage = await message.channel.send({
@@ -165,10 +175,7 @@ export const createSlider = async (options: SliderOptions) => {
       interaction.reply({ content: replyMessages.back, ephemeral: true });
       if (currentPage === 1) {
         currentPage = embeds.length;
-        sliderMessage.edit({
-          embeds: [embeds[currentPage - 1]],
-          components: msgButtons(),
-        });
+        editEmbed(currentPage - 1);
         return;
       }
       currentPage--;
@@ -177,27 +184,25 @@ export const createSlider = async (options: SliderOptions) => {
       interaction.reply({ content: replyMessages.foward, ephemeral: true });
       if (currentPage === embeds.length) {
         currentPage = 1;
-        sliderMessage.edit({
-          embeds: [embeds[currentPage - 1]],
-          components: msgButtons(),
-        });
+        editEmbed(currentPage - 1);
         return;
       }
       currentPage++;
     }
-    if (id === "backMain") {
-      interaction.reply({ content: replyMessages.backMain, ephemeral: true });
+    if (id === "first") {
+      interaction.reply({ content: replyMessages.first, ephemeral: true });
       currentPage = 1;
+    }
+    if (id === "last") {
+      interaction.reply({ content: replyMessages.last, ephemeral: true });
+      currentPage = embeds.length;
     }
     if (id === "delete") {
       sliderMessage.delete();
       return;
     }
 
-    sliderMessage.edit({
-      embeds: [embeds[currentPage - 1]],
-      components: msgButtons(),
-    });
+    editEmbed(currentPage - 1);
   });
 
   collector.on("end", () => {
@@ -210,5 +215,12 @@ export const createSlider = async (options: SliderOptions) => {
     }
   });
 
-  /////////////////////////
+  async function editEmbed(index: number, state?: boolean) {
+    sliderMessage
+      .edit({
+        embeds: [embeds[index]],
+        components: msgButtons(state || false),
+      })
+      .catch(() => {});
+  }
 };

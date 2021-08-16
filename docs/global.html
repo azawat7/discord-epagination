@@ -345,7 +345,8 @@
 <ul>
 <li><code>back</code></li>
 <li><code>foward</code></li>
-<li><code>backMain</code></li>
+<li><code>first</code></li>
+<li><code>last</code></li>
 <li><code>delete</code></li>
 </ul>
 </div>
@@ -421,7 +422,7 @@
 
 
 <div class="description">
-    <p>Other buttons (delete, backMain).</p>
+    <p>Other buttons (delete, first, last).</p>
 </div>
 
 
@@ -480,7 +481,7 @@
 
             <tr>
                 
-                    <td class="name"><code>backMainButton</code></td>
+                    <td class="name"><code>firstButton</code></td>
                 
 
                 <td class="type">
@@ -496,7 +497,30 @@
 
                 
 
-                <td class="description last"><p>Indicates if the back to first page button should be in the slider.</p></td>
+                <td class="description last"><p>Indicates if the first page button should be in the slider.</p></td>
+            </tr>
+
+        
+
+            <tr>
+                
+                    <td class="name"><code>lastButton</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type"><a href="global.html#OtherButtonsOptions">OtherButtonsOptions</a></span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Indicates if the last page button should be in the slider.</p></td>
             </tr>
 
         
@@ -521,7 +545,7 @@
 
 
 <div class="description">
-    <p>Options for the other buttons (delete, backMain).</p>
+    <p>Options for the other buttons (delete, first, last).</p>
 </div>
 
 
@@ -596,7 +620,7 @@
 
                 
 
-                <td class="description last"><p>Position of the button in the row. You need to set a positive index, the default buttons (back, foward) are in the array and you can't change their position and the back to first page button is the first button that will receive the position and the delete button after. So make sure to set a correct index if you want to do something very specific.</p></td>
+                <td class="description last"><p>Position of the button in the row. You need to set a positive index, the default buttons (back, foward) are in the array and you can't change their positio. Don't forget that the buttons are receiveing position in this order : first -&gt; last -&gt; delete, so make sure to set a correct index if you want to do something very specific.</p></td>
             </tr>
 
         
@@ -703,7 +727,7 @@
 
             <tr>
                 
-                    <td class="name"><code>backMain</code></td>
+                    <td class="name"><code>first</code></td>
                 
 
                 <td class="type">
@@ -720,6 +744,29 @@
                 
 
                 <td class="description last"><p>Reply sent when the back to first page button is clicked.</p></td>
+            </tr>
+
+        
+
+            <tr>
+                
+                    <td class="name"><code>last</code></td>
+                
+
+                <td class="type">
+                
+                    
+<span class="param-type">string</span>
+
+
+                
+                </td>
+
+                
+
+                
+
+                <td class="description last"><p>Reply sent when the back to last page button is clicked.</p></td>
             </tr>
 
         

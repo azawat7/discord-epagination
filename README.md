@@ -8,8 +8,16 @@ A package to paginate embeds. Compatible with discord.js v13+. Note, it's a pack
 
 ## Installation
 
+To install the latest version :
+
 ```sh
 npm i discord-epagination
+```
+
+To install a specific version :
+
+```sh
+npm i discord-epagination@version
 ```
 
 ## Function
@@ -48,20 +56,28 @@ createSlider({
     // Foward button reply
     foward: "foward",
     // First page button reply
-    backMain: "backmain",
+    first: "first",
+    // Last page button reply
+    last: "last",
   },
   // Other buttons
   otherButtons: {
     // First page button
-    backMainButton: {
+    firstButton: {
       enabled: true,
-      // Make the button behind the back and foward buttons.
+      // Make the button behind the back and foward buttons. [..., "previous", "next"]
       position: 0,
+    },
+    // Last page button
+    lastButton: {
+      enabled: true,
+      // Make the button in front of the back and foward buttons. ["first", "previous", "next", ...]
+      position: 3,
     },
     // Delete button
     deleteButton: {
       enabled: true,
-      // Make the button in front of the back and foward buttons.
+      // Make the button in the middle of all the buttons. ["first", "previous", ... , "next", "last"]
       position: 2,
     },
   },
@@ -72,9 +88,13 @@ createSlider({
     // Customization for the foward button
     { name: "foward", emoji: "▶", style: "PRIMARY" },
     // Customization for the first page button
-    { name: "backMain", emoji: "↩", style: "PRIMARY" },
+    { name: "first", emoji: "⏪", style: "PRIMARY" },
+    // Customization for the last page button
+    { name: "last", emoji: "⏩", style: "PRIMARY" },
     // Customization for the delete button
     { name: "delete", emoji: "❌", style: "DANGER" },
   ],
+  // Duration wich will define how much time the buttons will be interactable.
+  time: 60000,
 });
 ```

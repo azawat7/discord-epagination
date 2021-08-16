@@ -1,7 +1,7 @@
 {
   "name": "discord-epagination",
-  "version": "1.4.3-2",
-  "description": "A discord.js v13 paginator.",
+  "version": "1.4.4",
+  "description": "A discord.js v13 embed paginator.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azawat7/discord-pagination.git"
+    "url": "git+https://github.com/azawat7/discord-epagination.git"
   },
   "keywords": [
     "discord.js",
@@ -18,16 +18,19 @@
     "paginator",
     "paginate",
     "slider",
-    "buttons"
+    "buttons",
+    "discord",
+    "azawat",
+    "embed"
   ],
   "author": "im_a_panda_guy <az4wat@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/azawat7/discord-pagination/issues"
+    "url": "https://github.com/azawat7/discord-epagination/issues"
   },
   "homepage": "https://discord-epagination.js.org",
   "dependencies": {
-    "discord.js": "^13.0.1"
+    "discord.js": "^13.1.0"
   },
   "devDependencies": {
     "jsdoc": "^3.6.7",
