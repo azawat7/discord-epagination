@@ -49,17 +49,6 @@ createSlider({
   message: message,
   // Array of embeds that will be paginated
   embeds: embeds,
-  // Reply messages that will be sent (ephemeral) when a button is clicked
-  replyMessages: {
-    // Back button reply
-    back: "back",
-    // Foward button reply
-    foward: "foward",
-    // First page button reply
-    first: "first",
-    // Last page button reply
-    last: "last",
-  },
   // Other buttons
   otherButtons: {
     // First page button

@@ -8,7 +8,6 @@ import {
 import {
   SliderOptions,
   Button,
-  ReplyMessages,
   OtherButtons,
   ButtonNames,
   ButtonStyles,
@@ -21,7 +20,6 @@ import {
  *
  * @property {Message} message Discord.js message resolvable.
  * @property {MessageEmbed[]} embeds Array of Embeds to use in the slider.
- * @property {ReplyMessages} replyMessages  Messages that will be sent (in ephemeral mode) when a button is clicked.
  * @property {Button[]} buttons Options for your buttons.
  * @property {number} time The time (in milliseconds) that the buttons can be interactable.
  * @property {OtherButtons} otherButtons Other buttons.
@@ -34,16 +32,6 @@ import {
  * @property {ButtonNames} name Name of the button.
  * @property {string} emoji Emoji used on the button.
  * @property {ButtonStyles} style Style of the button.
- */
-
-/**
- * Reply messages.
- * @typedef ReplyMessages
- *
- * @property {string} back Reply sent when the back button is clicked.
- * @property {string} foward Reply sent when the foward button is clicked.
- * @property {string} first Reply sent when the back to first page button is clicked.
- * @property {string} last Reply sent when the back to last page button is clicked.
  */
 
 /**
@@ -91,7 +79,7 @@ export const createSlider = async (options: SliderOptions) => {
   if (typeof options !== "object" || !options)
     throw new TypeError("discord-epagination: options must be a object");
 
-  const { message, embeds, replyMessages, buttons, time, otherButtons } = options; // prettier-ignore
+  const { message, embeds, buttons, time, otherButtons } = options; // prettier-ignore
 
   let currentPage = 1;
 
@@ -172,29 +160,25 @@ export const createSlider = async (options: SliderOptions) => {
     const id = interaction.customId as ButtonNames;
 
     if (id === "back") {
-      interaction.reply({ content: replyMessages.back, ephemeral: true });
       if (currentPage === 1) {
         currentPage = embeds.length;
-        editEmbed(currentPage - 1);
+        editEmbed(interaction, currentPage - 1);
         return;
       }
       currentPage--;
     }
     if (id === "foward") {
-      interaction.reply({ content: replyMessages.foward, ephemeral: true });
       if (currentPage === embeds.length) {
         currentPage = 1;
-        editEmbed(currentPage - 1);
+        editEmbed(interaction, currentPage - 1);
         return;
       }
       currentPage++;
     }
     if (id === "first") {
-      interaction.reply({ content: replyMessages.first, ephemeral: true });
       currentPage = 1;
     }
     if (id === "last") {
-      interaction.reply({ content: replyMessages.last, ephemeral: true });
       currentPage = embeds.length;
     }
     if (id === "delete") {
@@ -202,7 +186,7 @@ export const createSlider = async (options: SliderOptions) => {
       return;
     }
 
-    editEmbed(currentPage - 1);
+    editEmbed(interaction, currentPage - 1);
   });
 
   collector.on("end", () => {
@@ -215,9 +199,13 @@ export const createSlider = async (options: SliderOptions) => {
     }
   });
 
-  async function editEmbed(index: number, state?: boolean) {
-    sliderMessage
-      .edit({
+  async function editEmbed(
+    interaction: ButtonInteraction,
+    index: number,
+    state?: boolean
+  ) {
+    interaction
+      .update({
         embeds: [embeds[index]],
         components: msgButtons(state || false),
       })

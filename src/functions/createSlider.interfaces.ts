@@ -12,11 +12,6 @@ export interface SliderOptions {
   embeds: MessageEmbed[];
 
   /**
-   * Messages that will be sent (in ephemeral mode) when a button is clicked.
-   */
-  replyMessages: ReplyMessages;
-
-  /**
    *  Options for your buttons.
    */
   buttons: Button[];
@@ -47,28 +42,6 @@ export interface Button {
    * Style of the button.
    */
   style?: ButtonStyles;
-}
-
-export interface ReplyMessages {
-  /**
-   * Reply sent when the back button is clicked.
-   */
-  back: string;
-
-  /**
-   * Reply sent when the foward button is clicked.
-   */
-  foward: string;
-
-  /**
-   * Reply sent when the first page button is clicked.
-   */
-  first: string;
-
-  /**
-   * Reply sent when the last page button is clicked.
-   */
-  last: string;
 }
 
 export interface OtherButtons {
