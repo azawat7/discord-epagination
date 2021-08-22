@@ -118,7 +118,7 @@ export const createSlider = async (options: SliderOptions) => {
       row.push(
         new MessageButton()
           .setEmoji(getButtonData(name).emoji)
-          .setCustomId(name)
+          .setCustomId(`paginator-${name}`)
           .setDisabled(state)
           .setStyle(getButtonData(name).style || "SECONDARY")
       );
@@ -157,7 +157,8 @@ export const createSlider = async (options: SliderOptions) => {
   /////////////////////////
 
   collector.on("collect", async (interaction) => {
-    const id = interaction.customId as ButtonNames;
+    const tag = interaction.customId.split("-");
+    const id = tag[1] as ButtonNames;
 
     if (id === "back") {
       if (currentPage === 1) {
