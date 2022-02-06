@@ -1,10 +1,15 @@
-import { Message, MessageEmbed } from "discord.js";
+import { CommandInteraction, Message, MessageEmbed } from "discord.js";
 
 export interface SliderOptions {
   /**
    * Discord.js message class.
    */
-  message: Message;
+  message?: Message;
+
+  /**
+   * Discord.js CommandInteraction class.
+   */
+  interaction?: CommandInteraction;
 
   /**
    *  Array of Embeds to use in the slider.

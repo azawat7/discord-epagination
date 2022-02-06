@@ -2,6 +2,7 @@ import {
   MessageButton,
   MessageActionRow,
   Message,
+  CommandInteraction,
   ButtonInteraction,
   MessageEmbed,
 } from "discord.js";
@@ -18,7 +19,7 @@ import {
  * Options for the slider.
  * @typedef SliderOptions
  *
- * @property {Message} message Discord.js message resolvable.
+ * @property {Message | CommandInteraction} message Discord.js message or command interaction resolvable.
  * @property {MessageEmbed[]} embeds Array of Embeds to use in the slider.
  * @property {Button[]} buttons Options for your buttons.
  * @property {number} time The time (in milliseconds) that the buttons can be interactable.
@@ -75,11 +76,11 @@ import {
  * @param {SliderOptions} options Slide
  * @returns {Promise<void>} void
  */
-export const createSlider = async (options: SliderOptions) => {
+export const createSlider = async (options: SliderOptions): Promise<void> => {
   if (typeof options !== "object" || !options)
     throw new TypeError("discord-epagination: options must be a object");
 
-  const { message, embeds, buttons, time, otherButtons } = options; // prettier-ignore
+  const { message, interaction, embeds, buttons, time, otherButtons } = options; // prettier-ignore
 
   let currentPage = 1;
 
@@ -130,7 +131,8 @@ export const createSlider = async (options: SliderOptions) => {
     new MessageActionRow().addComponents(createButtons(state || false)),
   ];
 
-  const sliderMessage = await message.channel.send({
+  const { channel } = message || interaction;
+  const sliderMessage = await channel.send({
     embeds: [embeds[currentPage - 1]],
     components: msgButtons(),
   });
@@ -138,8 +140,9 @@ export const createSlider = async (options: SliderOptions) => {
   /////////////////////////
   /////////////////////////
 
-  const filter = (interaction: ButtonInteraction) => {
-    return interaction.user.id === message.author.id;
+  const filter = (intractn: ButtonInteraction) => {
+    const user = message.author || interaction.user;
+    return intractn.user.id === user.id;
   };
 
   const collectorOptions = () => {
@@ -156,7 +159,7 @@ export const createSlider = async (options: SliderOptions) => {
 
   /////////////////////////
 
-  collector.on("collect", async (interaction) => {
+  collector.on("collect", async (interaction: ButtonInteraction) => {
     const tag = interaction.customId.split("-");
     const id = tag[1] as ButtonNames;
 
