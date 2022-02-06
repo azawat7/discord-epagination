@@ -82,6 +82,12 @@ export const createSlider = async (options: SliderOptions): Promise<void> => {
 
   const { message, interaction, embeds, buttons, time, otherButtons } = options; // prettier-ignore
 
+  if (!message && !interaction) {
+    throw new Error(
+      "discord-epagination: must provide either message or interaction"
+    );
+  }
+
   let currentPage = 1;
 
   /////////////////////////
@@ -131,11 +137,33 @@ export const createSlider = async (options: SliderOptions): Promise<void> => {
     new MessageActionRow().addComponents(createButtons(state || false)),
   ];
 
-  const { channel } = message || interaction;
-  const sliderMessage = await channel.send({
-    embeds: [embeds[currentPage - 1]],
-    components: msgButtons(),
-  });
+  // const { channel } = message || interaction;
+  // const sliderMessage = await channel.send({
+  //   embeds: [embeds[currentPage - 1]],
+  //   components: msgButtons(),
+  // });
+
+  let sliderMessage: Message;
+
+  if (message) {
+    sliderMessage = await message.channel.send({
+      embeds: [embeds[currentPage - 1]],
+      components: msgButtons(),
+    });
+  } else if (interaction) {
+    if (!interaction.replied) {
+      interaction.reply({
+        embeds: [embeds[currentPage - 1]],
+        components: msgButtons(),
+      });
+    } else {
+      interaction.editReply({
+        embeds: [embeds[currentPage - 1]],
+        components: msgButtons(),
+      });
+    }
+    sliderMessage = <Message>await interaction.fetchReply();
+  }
 
   /////////////////////////
   /////////////////////////
