@@ -1,11 +1,11 @@
 {
   "name": "discord-epagination",
-  "version": "1.4.5",
+  "version": "1.5.0",
   "description": "A discord.js v13 embed paginator.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose",
+    "docs": "jsdoc node_modules/.bin/jsdoc --configure .jsdoc.json --verbose",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,12 +29,12 @@
     "url": "https://github.com/azawat7/discord-epagination/issues"
   },
   "homepage": "https://discord-epagination.js.org",
-  "dependencies": {
-    "discord.js": "^13.1.0"
-  },
   "devDependencies": {
     "jsdoc": "^3.6.7",
     "jsdoc-skyceil": "^2.0.0",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "discord.js": "^13.6.0"
   }
 }
