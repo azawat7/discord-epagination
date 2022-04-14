@@ -1,6 +1,6 @@
 {
   "name": "discord-epagination",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "A discord.js v13 embed paginator.",
   "main": "dist/index.js",
   "scripts": {

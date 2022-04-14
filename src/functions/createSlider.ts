@@ -155,6 +155,8 @@ export const createSlider = async (options: SliderOptions): Promise<void> => {
 
 	/////////////////////////
 
+	let buttonInt;
+
 	collector.on("collect", async interaction => {
 		const tag = interaction.customId.split("-");
 		const id = tag[1] as ButtonNames;
@@ -188,15 +190,15 @@ export const createSlider = async (options: SliderOptions): Promise<void> => {
 		}
 
 		editEmbed(interaction, currentPage - 1);
+		buttonInt = interaction;
 	});
 
 	collector.on("end", () => {
 		if (sliderMessage.deletable) {
-			sliderMessage
-				.update({
-					components: msgButtons(true),
-				})
-				.catch(() => {});
+			interaction.editReply({
+				embeds: [embeds[currentPage - 1]],
+				components: msgButtons(true),
+			});
 		}
 	});
 
